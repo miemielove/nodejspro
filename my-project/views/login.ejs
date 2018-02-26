@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="/iconfont/iconfont.css">
+  </head>
+<body>
+   <section>
+   		<div class="login-head">
+   			<img src="/images/shopex.png" class="logo">
+   		</div>
+   		<div class="center-wrap">
+   			<div class="login-center">
+   				<div class="bd-logo">
+   					<img src="/images/ecshop-logo.png" width="373" height="103" border="0">
+   				</div>
+   			</div>
+			<div class="z-bd">
+				<div class="login-panel">
+					<div class="controls username">
+						<i class="iconfont icon">&#xe623;</i>
+						<input type="text" id="un" placeholder="用户名">
+					</div>
+					<div class="controls psw">
+						<i class="iconfont icon">&#xe65b;</i>
+						<input type="password" id="psw" placeholder="密码">
+					</div>
+					<div class="controls yzm">
+						<i class="iconfont icon">&#xe63d;</i>
+						<input type="text" id="yzm" placeholder="验证码">
+						<div class="random"></div>
+					</div>
+					<div class="controls btn">
+						<button onclick="login()" id="btn">登录</button>
+					</div>
+					<div class="last">
+						<label><input type="checkbox" id="check">保存登录信息</label>
+						<a href="javascript" id="wjmm">忘记密码？</a>
+						<a href="javascript" id="dpsy">去店铺首页>></a>
+					</div>
+				</div>
+			</div>
+   		</div>
+   </section>
+</body>
+</html>
+<script type="text/javascript" src="/javascripts/SCshop.js"></script>
