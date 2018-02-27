@@ -14,5 +14,12 @@ router.get('/index/index-head', function(req, res, next) {
   res.render('index-head', { title: 'ECSHOP管理中心' });
 });
 
+router.get('/index/index-left', function(req, res, next) {
+  res.render('index-left', { title: 'ECSHOP管理中心-left' });
+});
+
+router.get('/index/index-center', function(req, res, next) {
+  res.render('index-center', { title: 'ECSHOP管理中心-center' });
+});
 
 module.exports = router;

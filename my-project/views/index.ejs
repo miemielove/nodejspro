@@ -2,10 +2,15 @@
 <html>
 <head>
     <title><%= title %></title>
-	<script type="text/javascript" src="/javascripts/index.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
 </head>
    <frameset rows="118,*" framespacing="0" border="0">
-   		<frame src="/index/index-head" name="head-Frame" style="background: #212121;"></frame>
+   		<frame src="/index/index-head" name="head-Frame" scrolling="no" style="background: #212121;"></frame>
+   		<frameset cols="180,10,*" framespacing="0" border="0" id="frame-body">
+   			<frame src="/index/index-left" name="left-Frame" frameborder="no" scrolling="yes"></frame>
+   			<frame src="/index/index-center" name="center-Frame" frameborder="no" scrolling="no"></frame>
+   		</frameset>
    </frameset>
 </html>
+<script type="text/javascript" src="/javascripts/index.js"></script>
