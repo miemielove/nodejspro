@@ -114,30 +114,36 @@ h1{
 #tabbody-div{
 	padding:10px;
 	background: #fefefe;
+	position: relative;
 }
 
-#list-table{
+.dis-table{
+	display: none;
+	padding-bottom: 20px;
+}
+
+.list-table{
 	width: 90%;
-	align:center;
+	margin:0 auto;
 	display: table;
 	border-collapse: separate;
 	border-spacing: 2px;
 	border-color: grey;
 }
 
-#list-table tbody{
+.list-table tbody{
 	display: table-row-group;
 	vertical-align: middle;
 	border-color: inherit;
 }
 
-#list-table tbody tr{
+.list-table tbody tr{
 	display: table-row;
 	vertical-align: inherit;
 	border-color: inherit;
 }
 
-#list-table tbody tr .label{
+.list-table tbody tr .label{
 	text-align: right;
 	vertical-align: top;
 	font-weight: bold;
@@ -187,7 +193,7 @@ h1{
 	vertical-align: middle;
 }
 
-#list-table input[type="text"]{
+.list-table input[type="text"]{
 	margin:5px 0;
 }
 
@@ -199,9 +205,6 @@ h1{
 #lb{
 	font-size: 12px;
 	line-height: 18px;
-}
-
-#lb{
 	padding-right: 80px;
 }
 
@@ -217,7 +220,11 @@ h1{
 	color:#333;
 }
 
-.fllist{
+#sr-special{
+	display: none;
+}
+
+#pp-special{
 	display: none;
 }
 
@@ -275,6 +282,10 @@ h1{
 	padding:3px 0;
 }
 
+.img-size{
+	width: 100%;
+}
+
 #footer{
 	background: #f3f3f3 url(../images/th_bg.gif) repeat-x;
 	border:1px solid #ddd;
@@ -282,6 +293,8 @@ h1{
 	color:#9cacaf;
 	margin:10px 0;
 	text-align: center;
+	position: relative;
+	bottom: 10px;
 }
 
 

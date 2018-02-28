@@ -26,4 +26,8 @@ router.get('/index/index-right', function(req, res, next) {
   res.render('index-right', { title: 'ECSHOP管理中心-right' });
 });
 
+router.get('/index/goods-list', function(req, res, next) {
+  res.render('goods-list', { title: 'ECSHOP管理中心-goods-list' });
+});
+
 module.exports = router;

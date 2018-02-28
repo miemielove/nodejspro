@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/goods-list.css">
+</head>
+<body>
+	<h1>
+        <span class="action-span">
+            <a href="javascript:">ECSHOP 管理中心</a>
+        </span>
+        <span class="new-span"> - 商品列表 </span>
+        <span class="help-span">
+            <a href="javascript:" target="_blank" title="添加新商品帮助文档">
+                <img src="/images/jnsy.png">
+            </a>
+        </span>
+        <span class="list-span">
+            <a href="javascript:">添加新商品</a>
+        </span>
+    </h1>
+
+    <div id="form-div">
+    	<form name="searchList">
+    		<img src="/images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" style="vertical-align: middle;display: inline-block;">
+
+    		<select name="cat-id1" id="lb">
+                <option value="100">所有分类</option>
+                <option value="0">钻石</option>
+                <option value="1">衬衫</option>
+                <option value="2">裤子</option>
+                <option value="3">外套</option>
+                <option value="4">sd</option>
+                <option value="5">内衣</option>
+                <option value="6">针织衫</option>
+                <option value="7">运动鞋</option>
+                <option value="8">运动包</option>
+                <option value="9">户外帐篷</option>
+                <option value="10">户外骑行</option>
+            </select>
+
+            <select name="cat-id2" id="pp">
+                <option value="100">所有品牌</option>
+                <option value="0">gr</option>
+                <option value="1">空间大师</option>
+                <option value="2">溢彩年华</option>
+                <option value="31">EVENY</option>
+                <option value="30">圣迪奥</option>
+                <option value="29">韩都衣舍</option>
+                <option value="28">betu百图</option>
+                <option value="27">艾夫斯</option>
+                <option value="26">太平鸟</option>
+                <option value="25">O.SA</option>
+                <option value="34">美好家</option>
+                <option value="35">生活诚品</option>
+                <option value="44">kk</option>
+                <option value="43">帮宝适</option>
+                <option value="42">贝亲</option>
+                <option value="41">雅培</option>
+                <option value="40">好事达</option>
+                <option value="39">千弘</option>
+                <option value="38">美亿佳</option>
+                <option value="37">大豪</option>
+                <option value="36">宝优妮</option>
+                <option value="24">裂帛</option>
+                <option value="23">JNBY 江南布衣</option>
+                <option value="10">金立</option>
+                <option value="9">联想</option>
+                <option value="7">美的</option>
+                <option value="6">天翼</option>
+                <option value="5">漫步者</option>
+                <option value="4">希捷</option>
+                <option value="11">  恒基伟业</option>
+                <option value="12">夏普</option>
+                <option value="22">LILY</option>
+                <option value="21">白领</option>
+                <option value="19">acer</option>
+                <option value="18">AMD</option>
+                <option value="17">爱普生</option>
+                <option value="20">茵佳妮</option>
+                <option value="15">乐华</option>
+                <option value="14">创维</option>
+                <option value="13">索尼</option>
+                <option value="1">有讯网络</option>
+            </select>
+
+            <select name="cat-id3" id="all">
+            	<option value="1">全部</option>
+            	<option value="2">精品</option>
+            	<option value="3">新品</option>
+            	<option value="4">热销</option>
+            	<option value="5">特价</option>
+            	<option value="6">全部</option>
+            </select>
+
+             <select name="cat-id4" id="all-sx">
+            	<option value="1">全部</option>
+            	<option value="2">上架</option>
+            	<option value="3">下架</option>
+            </select>
+
+            关键字
+
+            <input type="text" name="search-val" id="search-inp" size="15">
+
+            <input type="button" value="搜索" id="search-btn">
+    	</form>
+    </div>
+
+    <form method="post" name="listForm">
+    	<div class="list-div" id="listDiv">
+    		<table cellpadding="3" cellspacing="1">
+    			<tr>
+    				<th>
+    					<input type="checkbox" id="checkBox">
+    					<a href="javascript:" title="点击对列表排序" class="tab-a">编号</a>
+    					<img src="/images/sort_desc.gif">
+    				</th>
+    				<th>
+    					<a href="javascript:" title="点击对列表排序"  class="tab-a">商品名称</a>
+    				</th>
+    				<th>
+    					<a href="javascript:" title="点击对列表排序"  class="tab-a">货号</a>
+    				</th>
+    				<th>
+    					<a href="javascript:" title="点击对列表排序"  class="tab-a">价格</a>
+    				</th>
+    				<th>
+    					<a href="javascript:" title="点击对列表排序"  class="tab-a">上架</a>
+    				</th>
+    				<th>
+    					<a href="javascript:" title="点击对列表排序"  class="tab-a">精品</a>
+    				</th>
+    				<th>
+    					<a href="javascript:" title="点击对列表排序"  class="tab-a">新品</a>
+    				</th>
+    				<th>
+    					<a href="javascript:" title="点击对列表排序"  class="tab-a">热销</a>
+    				</th>
+    				<th>
+    					<a href="javascript:" title="点击对列表排序"  class="tab-a">推荐排序</a>
+    				</th>
+    				<th>
+    					<a href="javascript:" title="点击对列表排序"  class="tab-a">库存</a>
+    				</th>
+    				<th>
+    					<a href="javascript:" title="点击对列表排序"  class="tab-a">虚拟销量</a>
+    				</th>
+    				<th>操作</th>
+    			</tr>
+
+    			<tr>
+    				<td>
+    					<input type="checkbox" name="checkboxes" value="254">
+    					254
+    				</td>
+    				<td class="first-cell">
+    					<span title="点击修改内容">衣服</span>
+    				</td>
+    				<td>
+    					<span title="点击修改内容">ECS000203</span>
+    				</td>
+    				<td>
+    					<span title="点击修改内容">0.00</span>
+    				</td>
+    				<td>
+    					<img src="/images/yes.gif">
+    				</td>
+    				<td>
+    					<img src="/images/yes.gif">
+    				</td>
+    				<td>
+    					<img src="/images/yes.gif">
+    				</td>
+    				<td>
+    					<img src="/images/yes.gif">
+    				</td>
+    				<td>
+    					<span title="点击修改内容">100</span>
+    				</td>
+    				<td>
+    					<span title="点击修改内容">1</span>
+    				</td>
+    				<td>
+    					<span title="点击修改内容">0</span>
+    				</td>
+    				<td>
+    					<a href="javascript:">
+    						<img src="/images/icon_view.gif">
+    					</a>
+    					<a href="javascript:">
+    						<img src="/images/icon_edit.gif">
+    					</a>
+    					<a href="javascript:">
+    						<img src="/images/icon_copy.gif">
+    					</a>
+    					<a href="javascript:">
+    						<img src="/images/icon_trash.gif">
+    					</a>
+    				</td>
+    			</tr>
+    		</table>
+    		<div id="tzy-list">
+    			总计
+    			<span id="totalNum">29</span>
+    			个记录分为
+    			<span id="totalPage">3</span>
+    			页当前第
+    			<span id="pageCurrent">1</span>
+    			页，每页
+    			<input type="text" size="3" id="pageSize" value="15">
+    			<span id="pageLink">
+    				<a href="javascript:">第一页</a>
+    				<a href="javascript:">上一页</a>
+    				<a href="javascript:">下一页</a>
+    				<a href="javascript:">最末页</a>
+    				<select id="gotoPage">
+    					<option value="1">1</option>
+    					<option value="2">2</option>
+    					<option value="3">3</option>
+    				</select>
+    			</span>
+    		</div>
+    	</div>
+
+    	<div>
+    		<select id="selAction" name="selType">
+    			<option value="trash">请选择...</option>
+    			<option value="trash1">回收站</option>
+    			<option value="trash2">上架</option>
+    			<option value="trash3">下架</option>
+    			<option value="trash4">精品</option>
+    			<option value="trash5">取消精品</option>
+    			<option value="trash6">新品</option>
+    			<option value="trash7">取消新品</option>
+    			<option value="trash8">热销</option>
+    			<option value="trash9">取消热销</option>
+    			<option value="trash10">转移到分类</option>
+    		</select>
+    		<input type="submit" name="btnSubmit" id="btn_submit">
+    	</div>
+    </form>
+
+    <div id="footer">
+        共执行 9 个查询，用时 0.024912 秒，Gzip 已禁用，内存占用 3.582 MB <br>版权所有 © 2005-2018 上海商派软件有限公司，并保留所有权利。
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="/javascripts/goods-list.js"></script>

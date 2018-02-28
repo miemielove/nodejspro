@@ -11,3 +11,12 @@ $(".click").click(function(){
 		flag = true;
 	}
 });
+
+
+$("#goodsList").click(function(){
+	window.parent.document.getElementsByTagName("frame")[3].src = "/index/goods-list";
+})
+
+$("#addGoods").click(function(){
+	window.parent.document.getElementsByTagName("frame")[3].src = "/index//index/index-right";
+})
