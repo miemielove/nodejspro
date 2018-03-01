@@ -33,14 +33,15 @@
         </ul>
 
         <div id="tabbody-div">
-            <form enctype="multipart/form-data" method="post" name="listForm">
+            <form enctype="multipart/form-data" method="post" name="listForm"
+            action="/index/index-right" id="frm">
                 <div class="dis-table" style="display: block">
                     <table class="list-table">
                         <tbody>
                             <tr>
                                 <td class="label">商品名称：</td>
                                 <td>
-                                    <input type="text" name="goods-name" id="right-inp" size="30">
+                                    <input type="text" name="goods_name" id="right-inp" size="30">
                                     <input type="color" id="color-sel" name="set-color" value="#ffff00">
                                     <select name="set-style" id="style-sel">
                                         <option value="">字体样式</option>
@@ -60,7 +61,7 @@
                                     商品货号：
                                 </td>
                                 <td>
-                                    <input type="text" name="goods-num" id="right-num"><br>
+                                    <input type="text" name="goods_num" id="right-num"><br>
                                     <span class="notice-tips">如果您不输入商品货号，系统将自动生成一个唯一的货号。</span>
                                 </td>
                             </tr>
@@ -172,7 +173,7 @@
                             <tr>
                                 <td class="label">本店售价：</td>
                                 <td>
-                                    <input type="text" name="goods-price" id="shop-price1" value="0" size="18">
+                                    <input type="text" name="goods_price" id="shop-price1" value="0" size="18">
                                     <input type="button" value="按市场价计算" class="js">
                                     <span class="require-field">*</span>
                                 </td>
@@ -267,7 +268,7 @@
                                     </label>
                                 </td>
                                 <td>
-                                    <input type="number" value="0" size="18" id="cx-price">
+                                    <input type="number" value="0" size="18" id="cx-price" readonly="readonly" style="background:#ebebe4 ">
                                 </td>
                             </tr>
                             <tr>
@@ -283,7 +284,7 @@
                             <tr>
                                 <td class="label">上传商品图片：</td>
                                 <td>
-                                    <input type="file" name="goods-img" size="15" class="imgUrl">
+                                    <input type="file" name="goods-img" size="15" class="imgUrl" id="addImg">
                                     <img src="/images/no.gif" id="url-img"><br>
                                     <input type="text" size="35" placeholder="商品图片外部URL" id="inpImg-url" name="inpImg">
                                 </td>
@@ -301,7 +302,7 @@
                             <tr>
                                 <td style="position: relative;left: 33%">
                                     <div id="button-div">
-                                        <input type="button" value="确定" class="button" id="qd-btn">
+                                        <input type="button" value="确定" class="button" id="qd-btn" onclick="addGoods()">
                                         <input type="reset" value="重置" class="button" id="cz-btn">
                                     </div>
                                 </td>

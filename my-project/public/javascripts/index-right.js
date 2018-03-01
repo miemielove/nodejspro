@@ -126,3 +126,23 @@ $("#style-sel").click(function(){
 	$("#right-inp").css("font",inpStyle)
 	// console.log(inpStyle)
 })
+
+
+function addGoods(){
+	var ajax = new XMLHttpRequest();
+	ajax.open("post","/index/index-right");
+	ajax.onreadystatechange = function(res){
+		if( ajax.status == 4 && ajax.readyState == 200 ){
+			console.log(ajax.responseText)
+		}
+	}
+
+	var form = new FormData();
+	form.append("goods_name",$("#right-inp").val());
+	form.append("goods_num",$("#right-num").val());
+	form.append("goods_price",$("#shop-price1").val());
+	form.append("img",document.getElementById("addImg").files[0]);
+
+	ajax.send( form );
+
+}

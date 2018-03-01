@@ -1,13 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var UserModel = require("../model/UserModel")
+var UserModel = require("../model/UserModel");
+var GoodsModel = require("../model/GoodsModel");
+var multiparty = require('multiparty');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   res.render('index', { title: 'ECSHOP管理中心' });
 });
 
-router.get('/login', function(req, res, next) {
+router.get('/login', function(req, res) {
   res.render('login', { title: '登录页面' });
 });
 
@@ -37,23 +39,55 @@ router.post("/api/login",function(req,res){
 })
 
 
-router.get('/index/index-head', function(req, res, next) {
+router.get('/index/index-head', function(req, res) {
   res.render('index-head', { title: 'ECSHOP管理中心' });
 });
 
-router.get('/index/index-left', function(req, res, next) {
+router.get('/index/index-left', function(req, res) {
   res.render('index-left', { title: 'ECSHOP管理中心-left' });
 });
 
-router.get('/index/index-center', function(req, res, next) {
+router.get('/index/index-center', function(req, res) {
   res.render('index-center', { title: 'ECSHOP管理中心-center' });
 });
 
-router.get('/index/index-right', function(req, res, next) {
+
+router.get('/index/index-right', function(req, res) {
   res.render('index-right', { title: 'ECSHOP管理中心-right' });
 });
 
-router.get('/index/goods-list', function(req, res, next) {
+router.post('/index/index-right', function(req, res) {
+  var form = new multiparty.Form({
+  	uploadDir : "./public/imgs"
+  });
+  form.parse(req,function(err,body,files){
+  	var goods_name = body.goods_name[0];
+  	var num = body.goods_num[0];
+  	var price = body.goods_price[0];
+  	var imgName = files.img[0].path;
+  	imgName = imgName.substr(imgName.lastIndexOf("\\") + 1 );
+  	console.log(goods_name,num,price,imgName)
+
+  	var gm = new GoodsModel();
+  	gm.goods_name = goods_name;
+  	gm.num = num;
+  	gm.price = price;
+  	gm.img = imgName;
+
+  	gm.save(function(err){
+  		if( !err ){
+  			res.send("文件上传成功");
+  		}else{
+  			res.send("文件上传失败");
+  		}
+  	})
+
+  	
+  });
+});
+
+
+router.get('/index/goods-list', function(req, res) {
   res.render('goods-list', { title: 'ECSHOP管理中心-goods-list' });
 });
 
