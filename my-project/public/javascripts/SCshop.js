@@ -27,3 +27,21 @@ $("#yzm").blur(function(){
 		}
 	}
 })
+
+
+function login(){
+	console.log($("#un").val())
+	console.log($("#psw").val())
+	$.ajax({
+		url : "/api/login",
+		type : "post",
+		data : {
+			username : $("#un").val(),
+			psw : $("#psw").val()
+		},
+		success : function(res){
+			console.log(res)
+			window.location.href = "http://localhost:8080/";
+		}
+	})
+}
