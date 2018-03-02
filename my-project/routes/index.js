@@ -93,39 +93,62 @@ router.get('/index/goods-list', function(req, res) {
 
 router.post('/index/goods-list', function(req, res) {
 	var searchVal = req.body.search_val;
+	var pageNum = parseInt(req.body.pageNum || 1);
+	var pageSize = parseInt(req.body.pageSize || 10 );
 	// console.log(searchVal)
+	// console.log(pageNum)
+	// console.log(pageSize)
 
-	if( searchVal != "" ){
-		GoodsModel.find({goods_name:{$regex:searchVal}},function(err,docs){
-			// console.log(docs)
-			res.send( docs )
+	if( searchVal == "" ){
+		GoodsModel.count({},function(err,number){
+			// console.log(number);
+			var query = GoodsModel.find({}).limit(pageSize).skip((pageNum-1)*pageSize).sort({create_date:-1});
+				query.exec(function(err,docs){
+					// console.log(docs)
+					// console.log(docs.length);
+					var result = {
+						count : number,
+						data :docs
+					};
+					// console.log(result);
+					res.send(result)
+				})
 		})
 	}else{
-		GoodsModel.find({},function(err,docs){
-	  		res.send( docs )
+		GoodsModel.count({goods_name:{$regex:searchVal}},function(err,number){
+			// console.log(number);
+			var query = GoodsModel.find({goods_name:{$regex:searchVal}}).limit(pageSize).skip((pageNum-1)*pageSize).sort({create_date:-1});
+			query.exec(function(err,docs){
+				// console.log(docs)
+				// console.log(docs.length)
+				var result = {
+						count : number,
+						data :docs
+					};
+					// console.log(result);
+					res.send(result)
+			})
 		})
 	}
-
-
-
 });
 
-router.post('/index/goods-del', function(req, res) {
-	var delName = req.body.delName;
-	// console.log(delName)
-	GoodsModel.remove({goods_name:{$regex:delName}},function(err,docs){
-		// console.log(docs)
+
+router.post("/index/goods-del",function(req,res){
+	console.log(req.body.gid)
+	GoodsModel.findByIdAndRemove({_id: req.body.gid},function(err){
+		var result = {
+			status : 1,
+			message : "商品删除成功"
+		};
+		if(err){
+			result.status = -119;
+			result.message = "商品删除失败";
+		}
+		res.send(result)
 	})
+})
 
-});
 
-router.post('/index/goods-num', function(req, res) {
-	GoodsModel.count({},function(err,docs){
-		console.log(docs);
-		res.send( docs.toString )
-	})
-
-});
 
 
 module.exports = router;

@@ -114,7 +114,7 @@
     		<table cellpadding="3" cellspacing="1" id="tabber-add">
     			<tr>
     				<th>
-    					<input type="checkbox" id="checkBox">
+    					<input type="checkbox" id="checkBox" name="fxk">
     					<a href="javascript:" title="点击对列表排序" class="tab-a">编号</a>
     					<img src="/images/sort_desc.gif">
     				</th>
@@ -160,7 +160,7 @@
     					<span>254</span>
     				</td>
     				<td class="first-cell">
-    					<span title="点击修改内容">衣服</span>
+    					<span title="点击修改内容">aaa</span>
     				</td>
     				<td>
     					<span title="点击修改内容">ECS000203</span>
@@ -208,22 +208,20 @@
     		</table>
     		<div id="tzy-list">
     			总计
-    			<span id="totalNum">29</span>
+    			<span id="totalNum"></span>
     			个记录分为
-    			<span id="totalPage">3</span>
+    			<span id="totalPage"></span>
     			页当前第
     			<span id="pageCurrent">1</span>
     			页，每页
-    			<input type="text" size="3" id="pageSize" value="15">
+    			<input type="text" size="3" id="pageSize" value="10">
     			<span id="pageLink">
-    				<a href="javascript:">第一页</a>
-    				<a href="javascript:">上一页</a>
-    				<a href="javascript:">下一页</a>
-    				<a href="javascript:">最末页</a>
+    				<a href="javascript:" id="first">第一页</a>
+    				<a href="javascript:" id="befor">上一页</a>
+    				<a href="javascript:" id="after">下一页</a>
+    				<a href="javascript:" id="last">最末页</a>
     				<select id="gotoPage">
-    					<option value="1">1</option>
-    					<option value="2">2</option>
-    					<option value="3">3</option>
+    					<!-- <option value="1">1</option> -->
     				</select>
     			</span>
     		</div>
