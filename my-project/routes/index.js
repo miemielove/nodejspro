@@ -88,7 +88,44 @@ router.post('/index/index-right', function(req, res) {
 
 
 router.get('/index/goods-list', function(req, res) {
-  res.render('goods-list', { title: 'ECSHOP管理中心-goods-list' });
+	res.render('goods-list', { title: 'ECSHOP管理中心-列表' });
 });
+
+router.post('/index/goods-list', function(req, res) {
+	var searchVal = req.body.search_val;
+	// console.log(searchVal)
+
+	if( searchVal != "" ){
+		GoodsModel.find({goods_name:{$regex:searchVal}},function(err,docs){
+			// console.log(docs)
+			res.send( docs )
+		})
+	}else{
+		GoodsModel.find({},function(err,docs){
+	  		res.send( docs )
+		})
+	}
+
+
+
+});
+
+router.post('/index/goods-del', function(req, res) {
+	var delName = req.body.delName;
+	// console.log(delName)
+	GoodsModel.remove({goods_name:{$regex:delName}},function(err,docs){
+		// console.log(docs)
+	})
+
+});
+
+router.post('/index/goods-num', function(req, res) {
+	GoodsModel.count({},function(err,docs){
+		console.log(docs);
+		res.send( docs.toString )
+	})
+
+});
+
 
 module.exports = router;

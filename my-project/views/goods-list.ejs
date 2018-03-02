@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="/stylesheets/goods-list.css">
 </head>
 <body>
+
 	<h1>
         <span class="action-span">
             <a href="javascript:">ECSHOP 管理中心</a>
@@ -104,13 +105,13 @@
 
             <input type="text" name="search-val" id="search-inp" size="15">
 
-            <input type="button" value="搜索" id="search-btn">
+            <input type="button" value="搜索" id="search-btn" onclick="search()">
     	</form>
     </div>
 
     <form method="post" name="listForm">
     	<div class="list-div" id="listDiv">
-    		<table cellpadding="3" cellspacing="1">
+    		<table cellpadding="3" cellspacing="1" id="tabber-add">
     			<tr>
     				<th>
     					<input type="checkbox" id="checkBox">
@@ -150,11 +151,10 @@
     				<th>操作</th>
     			</tr>
 
+   
 
-    
 
-
-    			<tr>
+    			<!-- <tr>
     				<td>
     					<input type="checkbox" name="checkboxes" value="254">
     					<span>254</span>
@@ -199,12 +199,12 @@
     					<a href="javascript:">
     						<img src="/images/icon_copy.gif">
     					</a>
-    					<a href="javascript:">
+    					<a href="javascript:" class="delThis">
     						<img src="/images/icon_trash.gif">
     					</a>
     				</td>
-    			</tr>
-                
+    			</tr> -->
+
     		</table>
     		<div id="tzy-list">
     			总计

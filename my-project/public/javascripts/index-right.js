@@ -137,9 +137,10 @@ function addGoods(){
 		}
 	}
 
+	var num = $("#right-num").val()||parseInt(Math.random()*999+1) 
 	var form = new FormData();
 	form.append("goods_name",$("#right-inp").val());
-	form.append("goods_num",$("#right-num").val());
+	form.append("goods_num",num);
 	form.append("goods_price",$("#shop-price1").val());
 	form.append("img",document.getElementById("addImg").files[0]);
 
