@@ -47,7 +47,7 @@ function addList(val){
 				str += `<tr>
 		    				<td>
 		    					<input type="checkbox" name="checkboxes" value="254">
-		    					<span>254</span>
+		    					<span>${i}</span>
 		    				</td>
 		    				<td class="first-cell">
 		    					<span title="点击修改内容">${pro.goods_name}</span>
