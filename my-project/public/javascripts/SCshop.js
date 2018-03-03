@@ -40,8 +40,12 @@ function login(){
 			psw : $("#psw").val()
 		},
 		success : function(res){
-			console.log(res)
-			window.location.href = "http://localhost:8080/";
+			console.log(res);
+			if(res.status==1){
+				window.location.href = "http://localhost:8080/";
+			}else{
+				alert( res.message )
+			}
 		}
 	})
 }
