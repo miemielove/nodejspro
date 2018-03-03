@@ -6,7 +6,11 @@ var multiparty = require('multiparty');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'ECSHOP管理中心' });
+	if( req.session && req.session.username != null ){
+  		res.render('index', { title: 'ECSHOP管理中心' });
+	}else{
+		res.redirect("/login")
+	}
 });
 
 router.get('/login', function(req, res) {
@@ -25,9 +29,11 @@ router.post("/api/login",function(req,res){
 	}
 
 	UserModel.find({username:username, psw:psw},function(err,docs){
-		console.log(docs.length);
+		// console.log(docs.length);
 		if( !err && docs.length > 0 ){
-			console.log("登录成功");
+			req.session.username = username;
+			// console.log(req.session.username);
+			// console.log("登录成功");
 			res.send(result)
 		}else{
 			console.log("登录失败，请检查您的用户名或者密码")
