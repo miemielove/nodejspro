@@ -9,6 +9,7 @@ window.onload = function(){
 	addList();
 }
 
+var obj = {};
 // 点击按钮显示搜索匹配信息
 function search(){
 	$("#tabber-add tr").eq(0).siblings('tr').remove();
@@ -20,7 +21,6 @@ $("#pageSize").blur(function(){
 	$("#tabber-add tr").eq(0).siblings('tr').remove();
 	addList();
 })
-
 
 function addList(){
 	var pageNum = $("#pageCurrent").text();
@@ -37,10 +37,14 @@ function addList(){
 			pageSize : pageSize
 		},
 		success : function(json){
-			// console.log(json)
+			obj = json;
+			console.log(obj.data.length);
+
+			// setList()
+
 			var str = "";
-			for( var i = 0; i < json.data.length; i++ ){
-				var pro = json.data[i];
+			for( var i = 0; i < obj.data.length; i++ ){
+				var pro = obj.data[i];
 				str += `<tr>
 		    				<td>
 		    					<input type="checkbox" name="checkboxes" value="254">
@@ -95,9 +99,9 @@ function addList(){
 			$("#tabber-add").append(str);
 
 
-			$("#totalNum").text( json.count );
+			$("#totalNum").text( obj.count );
 
-			$("#totalPage").text( Math.ceil(json.count/pageSize) )
+			$("#totalPage").text( Math.ceil(obj.count/pageSize) )
 
 
 
@@ -137,7 +141,8 @@ function addList(){
 				})
 			})
 
-
+			
+			
 
 
 		}
@@ -145,6 +150,70 @@ function addList(){
 }
 
 
+// function setList(){
+
+	// 第一页
+	$("#first").click(function(){
+		$("#pageCurrent").text(1);
+		$("#tabber-add tr").eq(0).siblings('tr').remove();
+			
+		addList()
+	})
+
+	// 最后一页
+	$("#last").click(function(){
+		var pageSize = $("#pageSize").val();
+		// var lastPage = $("#totalPage").text();
+		$("#pageCurrent").text( Math.ceil(obj.count/pageSize) );
+		$("#tabber-add tr").eq(0).siblings('tr').remove();
+
+		addList()
+	})
+
+	// 上一页
+	$("#before").click(function(){
+		var text = $("#pageCurrent").text();
+		text -= 1;
+		console.log(text)
+		// console.log(typeof text)
+		if( text <= 1 ){
+			text = 1;
+			$("#pageCurrent").text(text);
+			$("#tabber-add tr").eq(0).siblings('tr').remove();
+				
+			addList()
+		}else{
+			$("#pageCurrent").text(text);
+			$("#tabber-add tr").eq(0).siblings('tr').remove();
+				
+			addList()
+		}
+
+
+	})
+
+	// 下一页
+	$("#after").click(function(){
+		var text = parseInt($("#pageCurrent").text());
+		text += 1;
+		console.log(text)
+		var maxNum = Math.ceil(obj.count/pageSize)
+		console.log(maxNum)
+		if( text >= Math.ceil(obj.count/pageSize) ){
+			text = Math.ceil(obj.count/pageSize);
+			$("#pageCurrent").text(text);
+			$("#tabber-add tr").eq(0).siblings('tr').remove();
+				
+			addList()
+		}else{
+			$("#pageCurrent").text(text);
+			$("#tabber-add tr").eq(0).siblings('tr').remove();
+				
+			addList()
+		}
+	})
+
+// }
 
 
 
