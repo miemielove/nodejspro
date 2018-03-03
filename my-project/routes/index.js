@@ -22,8 +22,10 @@ router.post("/api/login",function(req,res){
 	
 	var username = req.body.username;
 	var psw = req.body.psw;
-	console.log(username,psw);
+	var yzm = req.body.yzm;
+	// console.log(username,psw,yzm);
 	var result = {
+		yzm : yzm,
 		status : 1,
 		message : "登录成功"
 	}

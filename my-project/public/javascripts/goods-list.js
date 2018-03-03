@@ -148,8 +148,15 @@ function addList(val){
 				var gid = $(this).attr("thisId")
 				// console.log(gid);
 
-				// 点击查找跳转页面
+				// 点击查找跳转至添加页面
 				window.parent.document.getElementsByTagName("frame")[3].src = "/index/index-right";
+
+				// var nowNum = $("#pageCurrent").text();
+				// var nowVal = $("#gotoPage").val();
+				// var nowPage = $("#pageSize").val();
+				// console.log(nowNum,nowVal,nowPage)
+
+
 
 				$.ajax({
 					url : "/index/goods-reset",
@@ -268,7 +275,7 @@ function addList(val){
 	// 选页显示
 	$("#gotoPage").change(function(){
 		var val = $(this).val();
-		console.log(val);
+		// console.log(val);
 		$("#pageCurrent").text(val);
 		$("#tabber-add tr").eq(0).siblings('tr').remove();
 

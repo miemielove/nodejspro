@@ -188,7 +188,8 @@ function resAdd(){
 				var pid = obj._id;
 
 				$("#cz-btn").click(function(){
-				console.log(pid)
+				window.parent.document.getElementsByTagName("frame")[3].src = "/index/goods-list";
+				// console.log(pid)
 					$.ajax({
 						url : "/index/index-regist",
 						type : "post",
@@ -199,7 +200,7 @@ function resAdd(){
 							goods_pid : pid
 						},
 						success : function(res){
-							console.log(res)
+							// console.log(res)
 						}
 					})
 				})

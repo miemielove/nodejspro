@@ -17,34 +17,33 @@ function yzm(){
 
 }
 
-$("#yzm").blur(function(){
-	var str = $(".random").html();
-	if( $(this).val()=="" ){
-		alert("您还没有输入验证码！")
-	}else{
-		if( $("#yzm").val() != str ){
-			alert("请填写正确的验证码！")
-		}
-	}
-})
 
 
 function login(){
-	console.log($("#un").val())
-	console.log($("#psw").val())
+	// console.log($("#un").val())
+	// console.log($("#psw").val())
+	// console.log($(".random").text())
+	var randYzm = $("#yzm").val();
 	$.ajax({
 		url : "/api/login",
 		type : "post",
 		data : {
 			username : $("#un").val(),
-			psw : $("#psw").val()
+			psw : $("#psw").val(),
+			yzm : $(".random").text()
 		},
 		success : function(res){
-			console.log(res);
-			if(res.status==1){
-				window.location.href = "http://localhost:8080/";
+			var getYzm = res.yzm;
+			console.log(typeof getYzm);
+			console.log(typeof randYzm);
+			if(randYzm!=getYzm){
+				alert("验证码不正确")
 			}else{
-				alert( res.message )
+				if( res.status==1 ){
+					window.location.href = "http://localhost:8080/";
+				}else{
+					alert( res.message )
+				}
 			}
 		}
 	})
