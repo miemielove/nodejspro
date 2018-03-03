@@ -21,8 +21,6 @@ window.onload = function(){
 var obj = {};
 
 
-
-
 // ajax传递数据
 function addList(){
 	var pageNum = $("#pageCurrent").text();
@@ -265,7 +263,7 @@ function addList(){
 		}	
 	});
 
-
+	// 选页显示
 	$("#gotoPage").change(function(){
 		var val = $(this).val();
 		// console.log(val);
