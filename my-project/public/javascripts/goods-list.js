@@ -22,7 +22,7 @@ var obj = {};
 
 
 // ajax传递数据
-function addList(){
+function addList(val){
 	var pageNum = $("#pageCurrent").text();
 	var pageSize = $("#pageSize").val();
 	// console.log(pageNum)
@@ -177,6 +177,9 @@ function addList(){
 				option = `<option value="${i}">${i}</option>`;
 				$("#gotoPage").append(option)
 			}
+			// console.log(val)
+
+			$("#gotoPage option[value="+val+"]").prop("selected",true)
 			
 
 
@@ -266,11 +269,11 @@ function addList(){
 	// 选页显示
 	$("#gotoPage").change(function(){
 		var val = $(this).val();
-		// console.log(val);
+		console.log(val);
 		$("#pageCurrent").text(val);
 		$("#tabber-add tr").eq(0).siblings('tr').remove();
 
-		addList()
+		addList(val)
 	})
 
 
