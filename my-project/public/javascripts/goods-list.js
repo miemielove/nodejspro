@@ -1,27 +1,29 @@
+// 鼠标划上tr 改变背景色
 $("#listDiv").find("tr").mouseenter(function(){
 	$(this).find("td").css("background","rgb(244,250,251)")
 }).mouseleave(function(){
 	$(this).find("td").css("background","#fff")
 });
 
+// 右上角点击页面跳转
+$(".list-span").click(function(){
+	window.parent.document.getElementsByTagName("frame")[3].src = "/index/index-right";
+})
+
+
+
 // 页面加载列表页显示所有信息
 window.onload = function(){
 	addList();
 }
 
+// 定义一个对象接收ajax的返回值，以便函数外操作
 var obj = {};
-// 点击按钮显示搜索匹配信息
-function search(){
-	$("#tabber-add tr").eq(0).siblings('tr').remove();
 
-	addList()
-}
 
-$("#pageSize").blur(function(){
-	$("#tabber-add tr").eq(0).siblings('tr').remove();
-	addList();
-})
 
+
+// ajax传递数据
 function addList(){
 	var pageNum = $("#pageCurrent").text();
 	var pageSize = $("#pageSize").val();
@@ -38,7 +40,7 @@ function addList(){
 		},
 		success : function(json){
 			obj = json;
-			console.log(obj.data.length);
+			// console.log(obj.data.length);
 
 			// setList()
 
@@ -84,7 +86,7 @@ function addList(){
 		    					<a href="javascript:">
 		    						<img src="/images/icon_view.gif">
 		    					</a>
-		    					<a href="javascript:">
+		    					<a href="javascript:" thisId="${pro._id}" class="makethis">
 		    						<img src="/images/icon_edit.gif">
 		    					</a>
 		    					<a href="javascript:">
@@ -98,10 +100,12 @@ function addList(){
 			}
 			$("#tabber-add").append(str);
 
-
+			// 显示总的数据条数
 			$("#totalNum").text( obj.count );
 
-			$("#totalPage").text( Math.ceil(obj.count/pageSize) )
+			// 显示总的页数（上取整操作）
+			var pageSize = $("#pageSize").val();
+			$("#totalPage").text( Math.ceil(obj.count/pageSize) );
 
 
 
@@ -141,7 +145,40 @@ function addList(){
 				})
 			})
 
-			
+
+			// 编辑商品（获取商品_id值，在后端查找匹配数据）
+			$(".makethis").click(function(){
+				var gid = $(this).attr("thisId")
+				// console.log(gid);
+
+				// 点击查找跳转页面
+				window.parent.document.getElementsByTagName("frame")[3].src = "/index/index-right";
+
+				$.ajax({
+					url : "/index/goods-reset",
+					type : "post",
+					data : {
+						id : gid
+					},
+					success : function(res){
+						console.log(res)
+					}
+				})
+			});
+
+
+			// 选择页
+			var pageSize = $("#pageSize").val();
+			var count = $("#totalNum").text()
+			// console.log(pageSize,count);
+			var maxSize = Math.ceil( count/pageSize )
+			// console.log(maxSize);
+			$("#gotoPage").find("option").remove();
+			for( var i = 1; i <= maxSize; i++ ){
+				var option = "";
+				option = `<option value="${i}">${i}</option>`;
+				$("#gotoPage").append(option)
+			}
 			
 
 
@@ -150,7 +187,7 @@ function addList(){
 }
 
 
-// function setList(){
+
 
 	// 第一页
 	$("#first").click(function(){
@@ -163,7 +200,6 @@ function addList(){
 	// 最后一页
 	$("#last").click(function(){
 		var pageSize = $("#pageSize").val();
-		// var lastPage = $("#totalPage").text();
 		$("#pageCurrent").text( Math.ceil(obj.count/pageSize) );
 		$("#tabber-add tr").eq(0).siblings('tr').remove();
 
@@ -174,7 +210,7 @@ function addList(){
 	$("#before").click(function(){
 		var text = $("#pageCurrent").text();
 		text -= 1;
-		console.log(text)
+		// console.log(text)
 		// console.log(typeof text)
 		if( text <= 1 ){
 			text = 1;
@@ -196,11 +232,12 @@ function addList(){
 	$("#after").click(function(){
 		var text = parseInt($("#pageCurrent").text());
 		text += 1;
-		console.log(text)
+		// console.log(text)
+		var pageSize = $("#pageSize").val();
 		var maxNum = Math.ceil(obj.count/pageSize)
-		console.log(maxNum)
-		if( text >= Math.ceil(obj.count/pageSize) ){
-			text = Math.ceil(obj.count/pageSize);
+		// console.log(maxNum)
+		if( text >= maxNum ){
+			text = maxNum;
 			$("#pageCurrent").text(text);
 			$("#tabber-add tr").eq(0).siblings('tr').remove();
 				
@@ -211,9 +248,67 @@ function addList(){
 				
 			addList()
 		}
+	});
+
+	// 设置可以选择的总页数
+	$("#pageSize").change(function(){
+		var pageSize = $("#pageSize").val();
+		var count = $("#totalNum").text()
+		// console.log(pageSize,count);
+		var maxSize = Math.ceil( count/pageSize )
+		// console.log(maxSize);
+		$("#gotoPage").find("option").remove();
+		for( var i = 1; i <= maxSize; i++ ){
+			var option = "";
+			option = `<option value="${i}">${i}</option>`;
+			$("#gotoPage").append(option)
+		}	
+	});
+
+
+	$("#gotoPage").change(function(){
+		var val = $(this).val();
+		// console.log(val);
+		$("#pageCurrent").text(val);
+		$("#tabber-add tr").eq(0).siblings('tr').remove();
+
+		addList()
 	})
 
-// }
+
+	// 页码输入框失焦事件，调用函数，重新加载数据
+	$("#pageSize").blur(function(){
+		var pageSize = $("#pageSize").val();
+		var count = $("#totalNum").text()
+		var maxSize = Math.ceil( count/pageSize );
+		var nowNum = $("#pageCurrent").text(1)
+		// console.log(maxSize)
+		$("#totalPage").text(maxSize)
+		$("#tabber-add tr").eq(0).siblings('tr').remove();
+
+		addList();
+
+	})
+
+	// 点击按钮显示搜索匹配信息
+	function search(){
+		$("#tabber-add tr").eq(0).siblings('tr').remove();
+		var pageSize = $("#pageSize").val();
+		var count = $("#totalNum").text()
+		var maxSize = Math.ceil( count/pageSize );
+		var nowNum = $("#pageCurrent").text(1)
+		// console.log(maxSize)
+		$("#totalPage").text(maxSize)
+		$("#tabber-add tr").eq(0).siblings('tr').remove();
+
+		addList();
+	}
+
+
+
+
+	
+
 
 
 

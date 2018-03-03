@@ -18,5 +18,5 @@ $("#goodsList").click(function(){
 })
 
 $("#addGoods").click(function(){
-	window.parent.document.getElementsByTagName("frame")[3].src = "/index//index/index-right";
+	window.parent.document.getElementsByTagName("frame")[3].src = "/index/index-right";
 })

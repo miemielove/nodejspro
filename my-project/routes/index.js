@@ -148,7 +148,39 @@ router.post("/index/goods-del",function(req,res){
 	})
 })
 
+var reset = [];
+router.post("/index/goods-reset",function(req,res){
+	var id = req.body.id;
+	// console.log(id);
+	GoodsModel.find({_id:id},function(err,docs){
+		// console.log(docs)
+		reset = docs
+	})
+});
+// console.log(reset)
+// console.log(reset.length)
+
+router.post("/index/index-reset",function(req,res){
+	// console.log(reset)
+	// console.log(reset.length)
+	res.send(reset);
+	reset = [];
+	// console.log(reset)
+	// console.log(reset.length)
+})
 
 
 
+// 编辑商品
+router.post('/index/index-regist', function(req, res) {
+	var name = req.body.goods_name;
+	var num = req.body.goods_num;
+	var price = req.body.goods_price;
+	var id = req.body.goods_pid;
+	// console.log(name,num,price,id)
+	GoodsModel.update({_id:id},{$set:{goods_name:name,num:num,price:price}},function(err,docs){
+		// console.log(docs)
+	});
+
+})
 module.exports = router;
