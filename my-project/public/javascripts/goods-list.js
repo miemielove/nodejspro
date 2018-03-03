@@ -40,7 +40,6 @@ function addList(val){
 			obj = json;
 			// console.log(obj.data.length);
 
-			// setList()
 
 			var str = "";
 			for( var i = 0; i < obj.data.length; i++ ){
