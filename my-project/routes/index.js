@@ -156,6 +156,8 @@ router.post("/index/goods-del",function(req,res){
 	})
 })
 
+
+// 列表页获取点击商品的id
 var reset = [];
 router.post("/index/goods-reset",function(req,res){
 	var id = req.body.id;
@@ -168,6 +170,8 @@ router.post("/index/goods-reset",function(req,res){
 // console.log(reset)
 // console.log(reset.length)
 
+
+// 将id匹配到的商品信息传给添加页面
 router.post("/index/index-reset",function(req,res){
 	// console.log(reset)
 	// console.log(reset.length)
